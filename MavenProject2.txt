@@ -1,0 +1,1195 @@
+#Assignment1- AlertDemo
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AlertDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+		driver.manage().window().maximize();
+		
+		//simple alert
+		driver.findElement(By.xpath("//button[normalize-space()='Click for JS Alert']")).click();
+		Alert myalert=driver.switchTo().alert();
+		
+		myalert.accept();
+		String result=driver.findElement(By.xpath("//h4[normalize-space()='Result:']/following-sibling::*")).getText();
+		System.out.println("Simple alert result is:" +result);
+
+		if(result.contains("clicked"))
+				
+				{ 
+			      System.out.println("Simple alert Test Passed1");
+				
+				}
+		else
+		         {
+			       System.out.println("Simple alert Test Failed ");
+		         }
+		
+		
+		
+		
+		//Confirmation alert
+		/* driver.findElement(By.xpath("//button[normalize-space()='Click for JS Confirm']")).click();
+		Alert myalert1=driver.switchTo().alert();
+		System.out.println(" Visible text is:"+myalert1.getText());
+		myalert1.dismiss();
+		
+		String resulttext2=driver.findElement(By.xpath("//p[@id='result']")).getText();
+		if(resulttext2.contains("Cancel"))
+			
+		      { 
+	      System.out.println("Test Passed2");
+		
+		      }
+          else
+         {
+	       System.out.println("Test Failed2 ");
+         }
+		*/
+	
+		
+		//Prompt alert with textbox
+		driver.findElement(By.xpath("//button[normalize-space()='Click for JS Prompt']")).click();
+		
+		Alert myalert3=driver.switchTo().alert();
+		myalert3.sendKeys("welcome");
+		myalert3.accept();
+		
+		String resulttext3=driver.findElement(By.xpath("//p[@id='result']")).getText();
+
+		
+		 if(resulttext3.contains("welcome"))
+			
+	       { 
+             System.out.println("Prompt alert Test Passed3");
+	
+	       }
+         else
+          {
+            System.out.println("Prompt alert Test Failed3 ");
+            }
+		
+	}
+	
+
+}
+
+
+#Assignment 2- AuthenticationAlert
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AuthenticationAlert {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		WebDriver driver=new ChromeDriver();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+		
+		
+		String result=driver.findElement(By.xpath("//h3[normalize-space()='Basic Auth']/following-sibling::*")).getText();
+		
+		
+		System.out.println(" Result is:" +result);
+		if(result.contains("Congratulations!"))
+		{
+			System.out.println("Passed");
+		}
+		else
+		{
+			System.out.println("Failed");
+		}
+		driver.close();
+	}
+
+}
+
+
+#Assignment3- AutondBootstrap
+
+
+package MavenProject2;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AutoANdBootStrap {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://kforce-uat.workingllama.com/atsuser/");
+		driver.manage().window().maximize();
+		
+		
+		driver.findElement(By.xpath("(//div[@class='e-multi-select-wrapper e-down-icon'])[2]")).click();
+		driver.findElement(By.xpath("//input[@class='e-input-filter e-input']")).sendKeys(".Net");
+		
+		
+		List<WebElement> options=driver.findElements(By.xpath("//div[@class='e-content e-dropdownbase']//li"));
+		System.out.println("Totla count is"+options.size());
+		
+		for(WebElement op:options)
+		{
+			String value1=op.getText();
+			if(value1.equals(".Net"))
+			{
+				op.click();
+			}
+		}
+		driver.close();
+	}
+
+}
+
+
+#Assignment4- AutoSuggestion
+
+package MavenProject2;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AutoANdBootStrap {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://kforce-uat.workingllama.com/atsuser/");
+		driver.manage().window().maximize();
+		
+		
+		driver.findElement(By.xpath("(//div[@class='e-multi-select-wrapper e-down-icon'])[2]")).click();
+		driver.findElement(By.xpath("//input[@class='e-input-filter e-input']")).sendKeys(".Net");
+		
+		
+		List<WebElement> options=driver.findElements(By.xpath("//div[@class='e-content e-dropdownbase']//li"));
+		System.out.println("Totla count is"+options.size());
+		
+		for(WebElement op:options)
+		{
+			String value1=op.getText();
+			if(value1.equals(".Net"))
+			{
+				op.click();
+			}
+		}
+		driver.close();
+	}
+
+}
+
+#Assignment5- bootStrapDropDemo
+
+
+package MavenProject2;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class BootStrapDropDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://www.jquery-az.com/boots/demo.php?ex=63.0_2");
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("//button[contains(@class,'multiselect')]")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//ul//input[@value='jQuery']")).click();
+		
+		List<WebElement> options=driver.findElements(By.xpath("//ul[@class='multiselect-container dropdown-menu']/*"));
+		
+		System.out.println("Total no of options are:" +options.size());
+		System.out.println("Options are:");
+	  for(int i=0;i<options.size();i++)
+	  {
+		  System.out.println(options.get(i).getText());
+		  String op2=options.get(i).getText();
+		  if(op2.equals("Java") ||op2.equals("Oracle"))
+				  {
+			  options.get(i).click();
+				  }
+	  }
+		
+		
+		driver.close();
+		
+	}
+	
+}
+
+
+#Assignment6- DatePicker
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.ElementClickInterceptedException;
+
+public class DatePicketAssignment {
+	
+	
+	 static void selectDM(WebDriver driver, String year, String month) 
+     {
+	 WebElement Month= driver.findElement(By.xpath("//select[@aria-label='Select month']"));
+	 Select mon=new Select(Month);
+	 mon.selectByVisibleText("Mar");
+	 
+	 
+	 WebElement Year= driver.findElement(By.xpath("//select[@aria-label='Select year']"));
+	 Select yea=new Select(Year);
+	 yea.selectByVisibleText("2026");
+	 
+     }
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		String expyear="2026";
+		String expmonth="Mar";
+		String expdate="15";
+
+	
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://dummy-tickets.com/buyticket");
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("(//a[normalize-space()='Both'])[1]")).click();
+		Thread.sleep(4000);
+		
+	//driver.findElement(By.xpath("(//input[@name='departure[]' and @placeholder='Departure Date'])[4]")).sendKeys("15-01-2025");
+		
+		WebElement depart=driver.findElement(By.xpath("(//input[@placeholder='Departure Date'])[4]"));
+          depart.clear();
+          depart.click();
+          
+          selectDM(driver, expyear, expmonth);
+		 
+		 
+		//driver.close();
+	}
+
+}
+
+
+#Assignment7 -Dynamic table with Pagination
+
+package MavenProject2;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DynamicTablewithPagination {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		
+			int tootalpage=driver.findElements(By.xpath("//ul[@class='pagination']//li")).size();
+				
+	int rows=driver.findElements(By.xpath("//table[@id='productTable']//tr")).size();
+	
+	int cols=driver.findElements(By.xpath("//table[@id='productTable']//tr[1]/td")).size();
+
+				System.out.println("ID"+"\t"+"Name"+"\t"+"Price");
+	
+	for (int i=1;i<=tootalpage;i++)
+				{	
+                  driver.findElement(By.xpath("//ul[@class='pagination']//li["+i+"]")).click();
+					
+					for(int r=1;r<=rows-1;r++)
+					{
+						for (int c=1;c<=cols;c++)
+						{
+							String value=driver.findElement(By.xpath("//table[@id='productTable']//tr["+r+"]/td["+c+"]")).getText();
+							
+							
+					            System.out.print(""+value+"\t");
+					            if(c==4)
+								{
+								driver.findElement(By.xpath("//table[@id='productTable']//tr["+r+"]//input[@type='checkbox']")).click();
+								}
+							
+						}
+						System.out.println("");
+					}
+				}
+				
+
+				
+	}
+
+}
+
+
+#Assignment8- EnableExtensionDemo
+
+package MavenProject2;
+
+import java.io.File;
+import java.time.Duration;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+
+public class EnableExtensionsDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ChromeOptions options=new ChromeOptions();
+		
+		File file=new File("C:\\Users\\USER\\Downloads\\AdBlock-—-block-ads-across-the-web-Chrome-Web-Store.crx");
+				
+       options.addExtensions(file);
+		
+		
+		WebDriver driver=new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+		driver.manage().window().maximize();
+		
+		
+		
+	}
+
+}
+
+
+#Assignment9 -FramesDemo
+
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class FramesDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://ui.vision/demo/webtest/frames/");
+		//driver.manage().window().maximize();
+		
+		//Switch to Frame1
+		WebElement frame1=driver.findElement(By.xpath("//frame[@src='frame_1.html']"));
+		driver.switchTo().frame(frame1);
+		
+		driver.findElement(By.xpath("//input[@name='mytext1']")).sendKeys("Frame1Input");
+		
+		//Switch to Frame2
+		
+		
+		driver.switchTo().defaultContent();
+		
+		WebElement frame2=driver.findElement(By.xpath("//frame[@src='frame_2.html']"));
+		driver.switchTo().frame(frame2);
+		
+		driver.findElement(By.xpath("//input[@name='mytext2']")).sendKeys("Frame2Input");
+		
+		
+		
+		//Switch to Frame3
+		driver.switchTo().defaultContent();
+		
+		WebElement frame3=driver.findElement(By.xpath("//frame[@src='frame_3.html']"));
+		driver.switchTo().frame(frame3);
+		
+		driver.findElement(By.xpath("//input[@name='mytext3']")).sendKeys("Programming");
+		
+		
+		driver.switchTo().frame(0);
+		
+		//driver.findElement(By.xpath("(//div[@class='AB7Lab Id5V1'])[1]")).click();
+		
+		
+		WebDriverWait mywait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		//switch to Frame5
+		driver.switchTo().defaultContent();
+		driver.switchTo().defaultContent();
+		WebElement frame5=driver.findElement(By.xpath("//frame[@src='frame_5.html']"));
+		driver.switchTo().frame(frame5);
+		
+		WebElement element=mywait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("https://a9t9.com")));
+		
+		if (element.isDisplayed() && element.isEnabled()) {
+		    element.click();
+		} else {
+		    System.out.println("Element is not visible or enabled.");
+		}
+		
+		// driver.findElement(By.linkText("https://a9t9.com")).click();
+		
+		
+		
+		//WebElement visionimage=driver.findElement(By.xpath("(//img[@alt='Ui.Vision by a9t9 software - Image-Driven Automation'])[1]"));
+		//boolean status=visionimage.isDisplayed();
+		
+		//System.out.println("Vision logo present?" +status);
+		
+		
+	}
+
+}
+
+#Assignment9- Hidden DropDown
+package MavenProject2;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HiddenDropDemo {
+
+	/**
+	 * @param args
+	 * @throws InterruptedException
+	 */
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.manage().window().maximize();
+
+		
+		//login
+		
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("admin");
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
+        driver.findElement(By.xpath("//button[normalize-space()='Login']")).click();
+		
+        driver.findElement(By.xpath("//span[normalize-space()='PIM']")).click();
+       
+        
+        Thread.sleep(5000);
+        driver.findElement(By.xpath("(//div[@class='oxd-select-text oxd-select-text--active'])[1]")).click();     
+        
+        //single element click
+        //driver.findElement(By.xpath("//span[normalize-space()='Part-Time Contract']")).click();
+        
+        //count total options and print it.
+        
+         List<WebElement> options=driver.findElements(By.xpath("//div[@role='listbox']/*"));
+        
+		System.out.println("Total Employeement status count is:" +options.size());
+		System.out.println("Employeement status options are:");
+		for(WebElement op:options)
+		{
+			System.out.println(""+op.getText());
+		}
+		
+		driver.close();
+	}
+	
+}
+
+#Assignment10-Javascript ExecutorDemo
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class JavaScriptExecutorDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		
+		WebElement name=driver.findElement(By.xpath("//input[@id='name']"));
+		
+		JavascriptExecutor js=(JavascriptExecutor) driver;
+		js.executeScript("arguments[0].setAttribute('value','Gowthami')",name);
+		
+     WebElement start=driver.findElement(By.xpath("//button[@onClick='toggleButton(this)']"));
+		js.executeScript("arguments[0].click();",start);
+		
+		
+		//scroll bar testcase
+		
+		//scroll till specific Pixel
+		
+		js.executeScript("window.scrollBy(0,3000)");
+		
+	
+		// System.out.println(js.executeScript("return window.pageYOffSet;"));
+		
+		//2 scroll till element found
+		/* WebElement frame=driver.findElement(By.xpath("//td[@class='first columns-cell']"));
+     
+        js.executeScript("arguments[0].scrollIntoView()",frame);
+        
+        */
+        
+        
+        js.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+        System.out.println(js.executeScript("return window.pageYOffset;"));
+        //js.executeScript("window.scrollBy(0, -document.body.scrollHeight)");
+        Thread.sleep(5000);
+        js.executeScript("document.body.style.zoom='70%';");
+        System.out.println(js.executeScript("return document.body.style.zoom"));
+
+        driver.close();
+      
+	}
+
+}
+
+#Assignmnet11-KeyboardActionsDemo
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class KeyboardActionsDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		
+		
+		
+		WebDriver driver=new ChromeDriver();	
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://demo.opencart.com/en-gb?route=common/home");
+		
+		driver.manage().window().maximize();
+		
+		Actions act=new Actions(driver);
+		
+		Thread.sleep(5000);
+		act.keyDown(Keys.CONTROL).keyDown(Keys.SHIFT).sendKeys("R").keyUp(Keys.SHIFT).keyUp(Keys.CONTROL).perform();
+		
+		 WebElement tablet=driver.findElement(By.xpath("//a[text()='Tablets']"));
+		 //tablet.click();
+		act.keyDown(Keys.CONTROL).click(tablet).perform();
+		
+	}
+
+}
+
+#Assignment12-MouseActionsDemo
+ 
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class MouseActionsDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		//driver.get("https://demo.opencart.com/");
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		 Actions act=new Actions(driver);
+		 // Mouse hover action
+		 
+		/* WebElement components=driver.findElement(By.xpath("//a[text()='Components']"));
+		 
+		 act.moveToElement(components).click(driver.findElement(By.xpath("//a[text()='Printers (0)']"))).perform();
+		 
+		*/
+		 
+		 //double click
+		WebElement Copytext=driver.findElement(By.xpath("//button[text()='Copy Text']"));
+		 
+		 act.doubleClick(Copytext).build().perform();
+		 
+		//Check Fiel1 coped to Field2 and validate matching
+		//approach1
+		 /* String Field1Value= driver.findElement(By.xpath("//input[@id='field1']")).getText();
+		 
+		 String Field2Value=driver.findElement(By.xpath("//input[@id='field2']")).getText();
+		 
+		 
+		 if(Field1Value==Field1Value)
+		 {
+			 System.out.println("Fiel1 copied to Field2");
+		 }
+		 else
+		 {
+			 System.out.println("Field1 not copied to Field2");
+		 }
+		 */
+		 
+		 //Drag and Drop
+		 
+		 WebElement source=driver.findElement(By.xpath("//p[text()='Drag me to my target']"));
+		 
+		 WebElement target=driver.findElement(By.xpath("//p[text()='Drop here']"));
+		 Thread.sleep(4000);
+		 
+		 act.dragAndDrop(source, target).build().perform();
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		
+	/* WebElement Desktop=	driver.findElement(By.xpath("//a[text()='Desktops']"));
+	
+	WebElement mac=driver.findElement(By.xpath("//a[text()='Mac (1)']"));
+	
+	 act.moveToElement(Desktop).perform();
+	 
+	 
+	 act.keyDown(Keys.CONTROL).click(mac).keyUp(Keys.CONTROL).perform();
+	 
+	 List<String> ids=new ArrayList<>(driver.getWindowHandles());
+	 
+	 System.out.println("WindowIS are:"+ ids);
+	 
+	 driver.switchTo().window(ids.get(1));
+	 System.out.println("Current window ID"+ driver.getWindowHandle());
+	 
+	 
+	Boolean opencart= driver.findElement(By.xpath("//img[@title='Your Store']")).isDisplayed();
+	 
+	   
+	 if(opencart== true)
+	 {
+		 System.out.println(" Image is displayed");
+	 }
+	 else
+	 { 
+		 System.out.println("Test case Failed");
+	 }
+	 */
+	 
+	
+	}
+
+}
+
+#Assignmnet13-OPtionClass
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.SessionNotCreatedException;
+
+public class OptionsClassDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ChromeOptions options=new ChromeOptions();
+		
+ //Headless testing
+		//options.addArguments("--headless=new");  // setting for headless mode of execution
+		options.addArguments("--incognito");  //opening in incognito mode
+		//options.setExperimentalOption("executeSwitches", new String[] {"enable-automation"}); 
+
+		//System.out.println(options.getBrowserName());
+
+		
+		WebDriver driver=new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://flipkart.com/");
+		driver.manage().window().maximize();
+		System.out.println(driver.getTitle());
+		
+   //Handling ssl
+		/* options.setAcceptInsecureCerts(true);   //ssl set true to bypass
+		
+		WebDriver driver=new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://expired.badssl.com/");
+		driver.manage().window().maximize();
+		System.out.println("Title"+driver.getTitle());
+		*/
+	}
+
+}
+
+#assignment14-SelectDropdown
+
+package MavenProject2;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.List;
+import org.openqa.selenium.StaleElementReferenceException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class SelectDropDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	
+	WebDriver driver=new ChromeDriver();
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	
+	driver.get("https://innovaindia-uat.workingllama.com/atsuser/");
+	driver.manage().window().maximize();
+	
+	//select Dropdown
+	WebElement jobtypeDropdown=driver.findElement(By.xpath("//select[contains(@class,'form-control') and @id='search-box-apply-before']"));
+	Select Jobtype=new Select(jobtypeDropdown);
+	//Jobtype.selectByContainsVisibleText("Contract");
+	
+	List<WebElement> options=Jobtype.getOptions();
+	System.out.println("No fo Job type options are:" +options.size());
+	
+	
+	System.out.println("Job type options are:");
+	for (WebElement op:options)
+	{
+		System.out.println(""+op.getText());
+		
+	}
+	driver.close();
+	
+	//program2
+	driver.get("https://testautomationpractice.blogspot.com/");
+	driver.manage().window().maximize();
+
+	WebElement countrydrp=driver.findElement(By.xpath("//select[@class='form-control' and @id='country']"));
+	Select countrydrp1=new Select(countrydrp);
+	countrydrp1.selectByIndex(7);
+	
+	
+	List<WebElement> countryvalues=countrydrp1.getOptions();
+	System.out.println("Country dropdown values are");
+	for(WebElement op:countryvalues)
+	{
+		System.out.println(op.getText());
+	}
+	
+	
+	WebElement Colordrp=driver.findElement(By.xpath("//select[@id='colors']"));
+	Select Colordrp1=new Select(Colordrp);
+	Colordrp1.selectByValue("green");
+	
+	List<WebElement> ColorOptions=Colordrp1.getOptions();
+	System.out.println("Color dropdown values are");
+	for(WebElement op1:ColorOptions)
+	{
+		System.out.println(op1.getText());
+	}
+	driver.close();
+	}
+
+}
+
+
+#Assignment15-sliderDemo
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
+
+public class sliderDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://epictravelstaffing-uat.workingllama.com/atsuser/");
+		driver.manage().window().maximize();
+		
+		
+		// salry slider
+	/*	driver.findElement(By.xpath("(//div[@class='card-title ml-0'])[2]")).click();
+		
+		WebElement min_slider=driver.findElement(By.xpath("(//input[@type='range'])[2]"));
+		
+		System.out.println("min_slider location"+min_slider.getLocation()); //(410, 358)
+		Actions act=new Actions(driver);
+		Thread.sleep(4000);
+		
+		act.dragAndDropBy(min_slider, 7000, 358).build().perform();
+	    
+		System.out.println("min_slider location"+min_slider.getLocation()); 
+		*/
+		
+	// Miles Range
+         driver.findElement(By.xpath("(//div[@class='card-title ml-0'])[1]")).click();
+		
+		WebElement max_slider=driver.findElement(By.xpath("(//input[@type='range'])[1]"));
+		
+		System.out.println("min_slider location"+max_slider.getLocation()); //(185, 361)
+		Actions act=new Actions(driver);
+		Thread.sleep(4000);
+		
+		act.dragAndDropBy(max_slider, 1000, 361);
+		System.out.println("min_slider location"+max_slider.getLocation()); 
+	
+	
+	
+	
+	
+	
+	
+	}
+
+}
+
+#Assignment16-Static Table
+
+package MavenProject2;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class StaticTable {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		
+	WebDriver driver=new ChromeDriver();
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	
+	driver.get("https://testautomationpractice.blogspot.com/");
+	driver.manage().window().maximize();
+	
+	int rows=driver.findElements(By.xpath("//table[@name='BookTable']/tbody/tr")).size();
+	
+	int columns=driver.findElements(By.xpath("//table[@name='BookTable']/tbody/tr/th")).size();
+	
+	
+	//Print all data from the static table
+	/*System.out.println("BookName"+"\t"+"Author"+"\t"+"Subject"+"\t"+"Price"+"\t");
+	for (int r=2;r<=rows;r++)
+	{
+		for(int c=1;c<=columns;c++)
+		{
+			String value=driver.findElement(By.xpath("//table[@name='BookTable']/tbody/tr["+r+"]/td["+c+"]")).getText();
+			System.out.print("    "+value);
+		}
+		System.out.println("");
+	}
+	*/
+	
+	//Print the sum of prices
+	int Total=0;
+	for(int r=2;r<=rows;r++)
+	{
+	String Price=driver.findElement(By.xpath("//table[@name='BookTable']/tbody/tr["+r+"]/td[4]")).getText();
+	Total=Total+Integer.parseInt(Price);
+	Thread.sleep(2000);
+	}
+	System.out.println("Total price of the books="+Total);
+	
+	
+	//Lowest Price of the book
+	int lowestPrice= Total;
+	
+	for (int r=2;r<=rows;r++)
+	{
+			String Price=driver.findElement(By.xpath("//table[@name='BookTable']/tbody/tr["+r+"]/td[4]")).getText();
+			int IntPrice = Integer.parseInt(Price);
+			
+			if(IntPrice<lowestPrice)
+			{
+			     lowestPrice=IntPrice;
+			}
+	
+			     System.out.println("Lowest Price :"+lowestPrice);
+			 	//finding lowest price bookname
+			 	
+			 	String Bookname=driver.findElement(By.xpath("//table[@name='BookTable']/tbody/tr["+r+"]/td[1]")).getText();
+			 	   System.out.println("Lowest price book name"+Bookname);
+			
+	}
+	
+	
+	
+	driver.close(); 
+	}
+
+}
+
+
+#Assignment17-TakeScreenshot
+
+package MavenProject2;
+
+import java.io.File;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TakeScreenshotDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://seller.flipkart.com/sell-online?utm_source=fkwebsite&utm_medium=websitedirect/");
+		driver.manage().window().maximize();
+		
+	//   Taking page screenshot
+	/*	TakesScreenshot ts=(TakesScreenshot)driver;
+		
+	    File sourcefile= ts.getScreenshotAs(OutputType.FILE);
+	    
+	    File targetfile=new File(System.getProperty("user.dir")+"\\Screenshots\\fullPage.png");
+
+	    sourcefile.renameTo(targetfile);
+	    
+	    */
+		
+		
+		//Take particular area screenshot
+		/* WebElement listProduct=driver.findElement(By.xpath("//div[@id='listProducts']"));
+		File sourcefile=listProduct.getScreenshotAs(OutputType.FILE);
+		
+		File targetfile=new File(System.getProperty("user.dir")+"\\Screenshots\\Sectionss.png");
+		
+	    sourcefile.renameTo(targetfile);
+
+		*/
+		
+		//Take webelement screenshot
+		
+		 WebElement listProduct=driver.findElement(By.xpath("//img[@class='styles__Image-sc-a90kxg-7 styles__HeaderImage-sc-1lklol6-1 biMflU']"));
+	    File sourcefile=listProduct.getScreenshotAs(OutputType.FILE);
+				
+    	File targetfile=new File(System.getProperty("user.dir")+"\\Screenshots\\elementss.png");
+	      sourcefile.renameTo(targetfile);
+	      
+	      
+		
+	    //driver.close();
+	}
+
+}
+
+
+#Assignment18-UploadFileDemo
+
+
+package MavenProject2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class UploadFileDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://davidwalsh.name/demo/multiple-file-upload.php");
+		driver.manage().window().maximize();
+		
+		
+	/*	driver.findElement(By.xpath("//input[@name='filesToUpload']")).sendKeys("C:\\Users\\USER\\Documents\\New folder\\Trivan.docx");
+		
+		if(driver.findElement(By.xpath("//ul[@id='fileList']/li")).getText().equals("Trivan.docx"))
+		{
+			System.out.println("File uploaded successfully");
+		}
+		else
+		{
+			System.out.println("File no uploaded");
+		}
+		*/
+		
+		String File1="C:\\Users\\USER\\Documents\\New folder\\Trivan.docx";
+	    String File2="C:\\\\Users\\\\USER\\\\Documents\\\\New folder\\\\kajal.docx";
+	    
+	    driver.findElement(By.xpath("//input[@name='filesToUpload']")).sendKeys(File1+"\n"+File2);
+		
+	    
+	    if(driver.findElement(By.xpath("//ul[@id='fileList']//li[1]")).getText().equals("Trivan.docx") &&
+	    		driver.findElement(By.xpath("//ul[@id='fileList']//li[2]")).getText().equals("kajal.docx"))
+	    		{
+			System.out.println("Multiple files uploaded successfully");
+
+	    		}
+	    else
+	    {
+			System.out.println("Multiple files uploaded Faied");
+
+	    }
+		
+	}
+
+}
+
