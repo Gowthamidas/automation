@@ -1,0 +1,344 @@
+
+#Assignment1
+
+package MavenPackage;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Assignment1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		
+		WebDriver driver=new ChromeDriver();
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		WebElement search=driver.findElement(By.xpath("//input[@id='Wikipedia1_wikipedia-search-input']"));
+	
+		search.sendKeys("TestCricket");
+		driver.findElement(By.xpath("//input[@type='submit']")).click();
+		
+		
+		List<WebElement> searchResults=driver.findElements(By.xpath("//div[@id='Wikipedia1_wikipedia-search-results']/descendant::a"));
+		
+
+		System.out.println("Search Result total count is:"+searchResults.size());
+		
+		for(WebElement Links:searchResults)
+		{
+			Links.click();
+			//Thread.sleep(5000);
+		}
+		
+               Set<String> winID=driver.getWindowHandles();
+               System.out.println("WindowIDs are:" +winID);
+               boolean status=false;
+               
+               for(String wid:winID)
+               {
+            	  
+                      String title=driver.switchTo().window(wid).getTitle();
+                      if(title.equals("ICC Men's Test Team Rankings - Wikipedia"))
+                      {
+                    	  System.out.println(driver.getCurrentUrl());
+                    	   status=true;
+                      }
+                     
+               }
+               if (status == false)
+               {
+            	   System.out.println("Title not matched");
+               }
+               driver.quit();
+	}
+
+}
+
+
+
+
+#Assignment2- Checkbox
+
+
+package MavenPackage;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CheckboxDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.manage().window().maximize();
+		driver.get("https://testautomationpractice.blogspot.com/");
+		
+		driver.manage().window().maximize();
+		
+		List<WebElement> Checkboxes=driver.findElements(By.xpath("//input[@class='form-check-input' and @type='checkbox']"));
+		System.out.println("Totla checkboxes are:"+Checkboxes.size());
+		
+		/*for (WebElement chkbx:Checkboxes)
+		{
+			chkbx.click();
+		}
+		driver.close(); */
+		
+		for(int i=Checkboxes.size()-3;i<Checkboxes.size();i++)
+		{
+			Checkboxes.get(i).click();
+		}
+		
+	}
+
+}
+
+
+#Assignment3- Radio button
+
+package MavenPackage;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ElementClickInterceptedException;
+
+public class RadiobuttonDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.manage().window().maximize();
+		driver.get("https://practice.expandtesting.com/radio-buttons#google_vignette");
+		
+		driver.manage().window().maximize();
+		
+		WebElement red=driver.findElement(By.xpath("//input[@id='red']"));
+		red.click();
+		System.out.println("Red Radio button status is:"+ red.isSelected());
+		
+		boolean tennis_status=driver.findElement(By.xpath("//input[@id='tennis']")).isSelected();
+		System.out.println("Status of Tennis Radio button by default is:"+ tennis_status);
+		
+		driver.quit();
+	}
+
+}
+
+
+#Assignment 4- WaitDemo
+
+
+package MavenPackage;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class WaitDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		WebDriver driver=new ChromeDriver();
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+		
+		WebDriverWait mywait=new WebDriverWait(driver,Duration.ofSeconds(5));
+		
+		driver.manage().window().maximize();
+		driver.get("https://www.orangehrm.com/en/book-a-free-demo");
+		WebElement fname=mywait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='Form_getForm_FullName']")));
+		fname.sendKeys("Gowthami");
+		driver.close();
+		
+	}
+
+}
+
+
+#Assignment 5- FluentWait
+
+package MavenPackage;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+
+import com.google.common.base.Function;
+
+public class FluentWaitDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		WebDriver driver=new ChromeDriver();
+		
+		Wait<WebDriver> mywait = new FluentWait<WebDriver>(driver)
+			       .withTimeout(Duration.ofSeconds(10))
+			       .pollingEvery(Duration.ofSeconds(5)
+                   .ignoring(NoSuchElementException.class);
+			       
+			   	driver.get("https://www.orangehrm.com/en/book-a-free-demo");
+
+			       
+        WebElement foo = mywait.until(new Function<WebDriver, WebElement>() {
+			    	     public WebElement apply(WebDriver driver) {
+			    	       return driver.findElement(By.xpath("//input[@id='Form_getForm_FullName']"));
+			    	     }
+			    	   });
+
+	}
+	
+	
+	
+
+}
+
+#Assignment 6- MethodsDemo
+package MavenPackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+/**
+ * 
+ */
+public class MenthodsDec26 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+            WebDriver driver=new ChromeDriver();
+            driver.get("https://testautomationpractice.blogspot.com/");
+            driver.manage().window().maximize();
+            System.out.println("Wondow ID:  "+driver.getWindowHandle());
+            
+            System.out.println("Title is:  "+driver.getTitle());
+    
+            
+
+            
+            Thread.sleep(3000);
+            
+            WebElement name=driver.findElement(By.xpath("//input[@id='name']"));
+            name.click();
+            name.sendKeys("Gowthami");
+            
+           WebElement smartphone=driver.findElement(By.xpath("(//input[@type='checkbox'])[8]"));
+           smartphone.click();
+           Thread.sleep(5000);
+           boolean status=smartphone.isSelected();
+           System.out.println("status of smartphon enablement:"+status );
+           
+          driver.findElement(By.xpath("//a[normalize-space()='merrymoonmary']")).click();
+           
+          Thread.sleep(3000);
+           System.out.println("Wondows IDs are:"+driver.getWindowHandles());
+        	System.out.println("Current URl"+driver.getCurrentUrl());
+           driver.close();
+	}
+
+}
+
+
+#Assignment 7-SwitchToDemo
+
+package MavenPackage;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SwitchToDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		
+		 WebDriver driver=new ChromeDriver();
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		 String url="https://testautomationpractice.blogspot.com/";
+		 driver.get(url);
+		 
+		 
+		 driver.manage().window().maximize();
+		 
+		 driver.findElement(By.xpath("//a[normalize-space()='merrymoonmary']")).click();
+		 
+		Set<String> windowIDs=driver.getWindowHandles();
+		
+	//	Approach1
+		//List<String> winID=new ArrayList<>(windowIDs);
+		  //   String parentid=winID.get(0);
+		    // System.out.println("ParentPage ID is:"+parentid);
+		   //  String childid=winID.get(1);
+		    // System.out.println("ChildPage ID is:"+childid);
+
+		    // driver.switchTo().window(childid);
+		   //  System.out.println(driver.getTitle());
+		   	//driver.close();
+		
+		//Approach2
+		for(String winid:windowIDs)
+		{
+			String ChildTitle=driver.switchTo().window(winid).getTitle();
+			
+			if(ChildTitle.equals("merrymoonmary Stock Image and Video Portfolio - iStock"))
+			{
+				driver.close();
+				break;
+			}
+		}
+		    
+
+	}
+
+}
+
